@@ -15,13 +15,13 @@ jobs:
       uses: actions/setup-go@v2
       with:
         go-version: 1.17
-
-    - name: Build
-      run: go build -v -o nginx-goldap ./...
     
     - name: debian
       id: debian
       uses: osallou/deb-package-action@bullseye
+
+    - name: Build
+      run: go build -v -o nginx-goldap *.go
 
     - name: Release
       uses: softprops/action-gh-release@v1
