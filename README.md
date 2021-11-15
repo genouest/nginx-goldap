@@ -29,6 +29,8 @@ Example nginx conf
 
         location = /auth-proxy {
             internal;
+            # just check user proxy_pass http://localhost:9999/;
+            # check user and user is in groupA or groupB proxy_pass http://localhost:9999/groupA/groupB;
             proxy_pass http://localhost:9999/goadmin;
             proxy_pass_request_body off;
             proxy_set_header Content-Length "";
