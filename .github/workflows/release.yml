@@ -21,17 +21,11 @@ jobs:
     
     - name: debian
       id: debian
-      image: debian:bullseye
-      script:
-        - apt-get update && apt-get -y install devscripts git-buildpackage
-        - mk-build-deps --install debian/control
-        - gbp buildpackage
-        - cp ../*.deb ./
-        - debfile=`ls *.deb` && echo "::set-output name=DEBFILE:${debfile}"
+      uses: osallou/deb-package-action@bullseye
 
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
         files: |
           nginx-goldap
-          ${{ steps.debian.outputs.DEBFILE }}"
+          *.deb
