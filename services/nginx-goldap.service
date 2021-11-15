@@ -1,0 +1,17 @@
+[Unit]
+Description=LDAP authentication helper for Nginx
+After=network.target network-online.target
+
+[Service]
+Type=simple
+User=nginx
+Group=nginx
+EnvironmentFile=/etc/default/nginx-goldap
+ExecStart=/usr/bin/nginx-goldap
+KillMode=process
+KillSignal=SIGINT
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
