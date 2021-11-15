@@ -1,0 +1,28 @@
+Source: nginx-goldap
+Maintainer: Olivier Sallou <olivier.sallou@irisa.fr>
+Section: golang
+Testsuite: autopkgtest-pkg-go
+Priority: optional
+Build-Depends: debhelper-compat (= 13),
+               dh-golang,
+               golang-any,
+               golang-github-gorilla-handlers-dev,
+               golang-github-gorilla-mux-dev,
+               golang-github-rs-zerolog-dev,
+               golang-github-go-ldap-ldap-dev
+Standards-Version: 4.5.0
+Vcs-Browser: https://github.com/genouest/nginx-goldap
+Vcs-Git: https://github.com/genouest/nginx-goldap.git
+Homepage: https://github.com/genouest/nginx-goldap
+Rules-Requires-Root: no
+XS-Go-Import-Path: github.com/genouest/nginx-goldap
+
+Package: nginx-goldap
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends}
+Built-Using: ${misc:Built-Using}
+Description: Nginx ldap authenticator for auth_request (auth user vs optional groups)
+ LDAP authenticator for Nginx Use an auth_request to service
+ proxied to http://host:port just to authenticate user or
+ http://host:port/group1/group2/..  to also check user is in one of groups

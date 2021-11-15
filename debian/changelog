@@ -1,0 +1,5 @@
+nginx-goldap (0.0~git20211115.330f91a-1) UNRELEASED; urgency=medium
+
+  * Initial release
+
+ -- Olivier Sallou <olivier.sallou@irisa.fr>  Mon, 15 Nov 2021 12:57:54 +0000
