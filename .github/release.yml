@@ -1,0 +1,37 @@
+name: release
+
+on:
+  push:
+    tags: [ '*' ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+
+    - name: Build
+      run: go build -v -o nginx-goldap ./...
+    
+    - name: debian
+      id: debian
+      image: debian:bullseye
+      script:
+        - apt-get update && apt-get -y install devscripts git-buildpackage
+        - mk-build-deps --install debian/control
+        - gbp buildpackage
+        - cp ../*.deb ./
+        - debfile=`ls *.deb` && echo "::set-output name=DEBFILE:${debfile}"
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          nginx-goldap
+          ${{ steps.debian.outputs.DEBFILE }}"
