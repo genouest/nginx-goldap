@@ -1,3 +1,9 @@
+nginx-goldap (0.2.1-1) UNRELEASED; urgency=medium
+
+  * Fix service env file install location
+
+ -- Olivier Sallou <olivier.sallou@irisa.fr>  Mon, 15 Nov 2021 12:57:54 +0000
+
 nginx-goldap (0.2.0-1) UNRELEASED; urgency=medium
 
   * Add support for TLS and user/password ldap conn
