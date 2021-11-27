@@ -1,1 +1,2 @@
 services/nginx-goldap.service lib/systemd/system
+services/nginx-goldap etc/default/nginx-goldap

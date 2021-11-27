@@ -5,6 +5,31 @@ Use an auth_request to service proxied to:
 * http://host:port just to authenticate user
 * http://host:port/group1/group2/..  to also check user is in one of groups
 
+## Usage
+
+Start executable with env vars for config, use -h for options.
+
+## Server configuration
+
+[service](services/nginx-goldap.service) expects config to be
+set via env variables in /etc/default/nginx-goldap
+
+If not using a service, you can start the process setting up the
+expected env variables
+
+For the moment, LDAP is expected to allow anonymous search/bind
+and do not use TLS
+
+Variables:
+
+* PORT: optional port to listen, defaults to 9999
+* LDAP_HOST: ldap host address
+* LDAP_PORT: optional ldap port, defaults to 389
+* LDAP_USER_DN: ldap user search dn (example: ou=People,dc=genouest,dc=org)
+* LDAP_GROUP_DN: ldap groups search dn (example: ou=Groups,dc=genouest,dc=org), expecting users to be in group *memberUid* (posixGroup)
+
+## Nginx configuration
+
 Example nginx conf
 
     server {
