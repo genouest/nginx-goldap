@@ -21,8 +21,11 @@ import (
 type favContextKey string
 
 type Config struct {
+	LdapURL       string
 	LdapHost      string
 	LdapPort      int64
+	LdapUser      string
+	LdapPassword  string
 	UserSearchDN  string
 	GroupSearchDN string
 }
@@ -83,14 +86,25 @@ func ldapAuth(username, password string, config *Config) ([]string, error) {
 		return nil, fmt.Errorf("ldap not configured")
 	}
 
-	conn, err := ldap.Dial("tcp", fmt.Sprintf("%s:%d", config.LdapHost, config.LdapPort))
+	var conn *ldap.Conn
+	var err error
+	if config.LdapURL != "" {
+		conn, err = ldap.DialURL(config.LdapURL)
+	} else {
+		conn, err = ldap.Dial("tcp", fmt.Sprintf("%s:%d", config.LdapHost, config.LdapPort))
+	}
 	if err != nil {
 		log.Error().Err(err).Msg("[ldap] failed to contact server")
 		return nil, err
 	}
 	defer conn.Close()
-	// conn.Start()
-	err = conn.UnauthenticatedBind("")
+
+	if config.LdapUser != "" {
+		err = conn.Bind(config.LdapURL, config.LdapPassword)
+	} else {
+		err = conn.UnauthenticatedBind("")
+	}
+
 	if err != nil {
 		log.Error().Err(err).Msg("[ldap] anon bind error")
 		return nil, err
@@ -229,12 +243,16 @@ func main() {
 	if os.Getenv("LDAP_PORT") != "" {
 		ldapPort, _ = strconv.ParseInt(os.Getenv("LDAP_PORT"), 10, 64)
 	}
-	ldapUserDN := os.Getenv("LDAP_USER_DN")  // "ou=People,dc=genouest,dc=org"
-	ldapGroupDN := os.Getenv("LDAP_GROUP_DN")  // "ou=Groups,dc=genouest,dc=org"
+
+	ldapUserDN := os.Getenv("LDAP_USER_DN")   // "ou=People,dc=genouest,dc=org"
+	ldapGroupDN := os.Getenv("LDAP_GROUP_DN") // "ou=Groups,dc=genouest,dc=org"
 
 	cfg := Config{
+		LdapURL:       os.Getenv("LDAP_URL"),
 		LdapHost:      ldapHost,
 		LdapPort:      ldapPort,
+		LdapUser:      os.Getenv("LDAP_USER"),
+		LdapPassword:  os.Getenv("LDAP_PASSWORD"),
 		UserSearchDN:  ldapUserDN,
 		GroupSearchDN: ldapGroupDN,
 	}

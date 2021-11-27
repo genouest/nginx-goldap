@@ -1,3 +1,18 @@
+nginx-goldap (0.2.0-1) UNRELEASED; urgency=medium
+
+  * Add support for TLS and user/password ldap conn
+  * new env vars LDAP_URL, LDAP_USER, LDAP_PASSWORD
+  * LDAP_URL replace LDAP_HOST and LDAP_PORT (though still works)
+
+ -- Olivier Sallou <olivier.sallou@irisa.fr>  Mon, 15 Nov 2021 12:57:54 +0000
+
+nginx-goldap (0.1.0-1) UNRELEASED; urgency=medium
+
+  * Update doc
+  * Add /etc/default/nginx-goldap
+
+ -- Olivier Sallou <olivier.sallou@irisa.fr>  Mon, 27 Nov 2021 12:57:54 +0000
+
 nginx-goldap (0.0.1-1) UNRELEASED; urgency=medium
 
   * Initial release

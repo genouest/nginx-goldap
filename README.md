@@ -23,8 +23,11 @@ and do not use TLS
 Variables:
 
 * PORT: optional port to listen, defaults to 9999
-* LDAP_HOST: ldap host address
-* LDAP_PORT: optional ldap port, defaults to 389
+* LDAP_URL: ldap url (ldap://, ldaps://, prefered method)
+* LDAP_HOST: ldap host address if not using LDAP_URL (old way)
+* LDAP_PORT: optional ldap port, defaults to 389 if not using LDAP_URL (old way)
+* LDAP_USER: optional ldap user dn to bind with (if empty use unauthenticated bind)
+* LDAP_PASSWORD: optional ldap user password to bind
 * LDAP_USER_DN: ldap user search dn (example: ou=People,dc=genouest,dc=org)
 * LDAP_GROUP_DN: ldap groups search dn (example: ou=Groups,dc=genouest,dc=org), expecting users to be in group *memberUid* (posixGroup)
 
