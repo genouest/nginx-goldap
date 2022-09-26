@@ -100,13 +100,13 @@ func ldapAuth(username, password string, config *Config) ([]string, error) {
 	defer conn.Close()
 
 	if config.LdapUser != "" {
-		err = conn.Bind(config.LdapURL, config.LdapPassword)
+		err = conn.Bind(config.LdapUser, config.LdapPassword)
 	} else {
 		err = conn.UnauthenticatedBind("")
 	}
 
 	if err != nil {
-		log.Error().Err(err).Msg("[ldap] anon bind error")
+		log.Error().Err(err).Msg("[ldap] bind error")
 		return nil, err
 	}
 
