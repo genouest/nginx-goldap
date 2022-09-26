@@ -24,7 +24,7 @@ Variables:
 
 * PORT: optional port to listen, defaults to 9999
 * LDAP_URL: ldap url (ldap://, ldaps://, prefered method)
-* LDAP_HOST: ldap host address if not using LDAP_URL (old way)
+* LDAP_HOST: ldap host address if not using LDAP_URL (old way, no TLS)
 * LDAP_PORT: optional ldap port, defaults to 389 if not using LDAP_URL (old way)
 * LDAP_USER: optional ldap user dn to bind with (if empty use unauthenticated bind)
 * LDAP_PASSWORD: optional ldap user password to bind

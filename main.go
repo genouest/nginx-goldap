@@ -82,7 +82,7 @@ func goMiddleware(nginxCtx Context, next http.Handler) http.Handler {
 }
 
 func ldapAuth(username, password string, config *Config) ([]string, error) {
-	if config.LdapHost == "" {
+	if config.LdapHost == "" && config.LdapURL == ""  {
 		return nil, fmt.Errorf("ldap not configured")
 	}
 
