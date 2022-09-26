@@ -1,3 +1,9 @@
+nginx-goldap (0.2.2-1) UNRELEASED; urgency=medium
+
+  * Fix authentication
+
+ -- Olivier Sallou <olivier.sallou@irisa.fr>  Mon, 26 Sep 2022 12:57:54 +0000
+
 nginx-goldap (0.2.1-1) UNRELEASED; urgency=medium
 
   * Fix service env file install location
