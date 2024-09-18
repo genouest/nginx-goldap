@@ -1,6 +1,6 @@
-nginx-goldap (0.2.5.-1) UNRELEASED; urgency=medium
+nginx-goldap (0.2.5.-1-bookworm) UNRELEASED; urgency=medium
 
-  * Force rebuild for recent debian versions
+  * Force rebuild for recent debian version (bookworm)
 
  -- Mateo Boudet <mateo.boudet@irisa.fr>  Wed, 18 Sep 2024 13:31:54 +0000
 
