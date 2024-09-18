@@ -4,8 +4,8 @@ After=network.target network-online.target
 
 [Service]
 Type=simple
-User=nginx
-Group=nginx
+User=www-data
+Group=www-data
 EnvironmentFile=/etc/default/nginx-goldap
 ExecStart=/usr/bin/nginx-goldap
 KillMode=process
